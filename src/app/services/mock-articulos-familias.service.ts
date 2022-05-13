@@ -1,13 +1,23 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { ArticulosFamilias } from '../models/articulo-familia';
+import { ArticuloFamilia } from '../models/articulo-familia';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MockArticulosFamiliasService {
-  constructor() {}
+  resourceUrl: string;
+  constructor(private httpClient: HttpClient) {
+    this.resourceUrl = 'https://pav2.azurewebsites.net/api/ArticulosFamilias/';
+  }
+
   get() {
-    return of(ArticulosFamilias);
+    return this.httpClient.get<ArticuloFamilia[]>(this.resourceUrl);
   }
 }
