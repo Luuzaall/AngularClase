@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ArticulosFamiliasComponent } from './articulo-familia/articulo-familia.component';
 import { MenuComponent } from './menu/menu.component';
+import { ArticulosComponent } from './articulos/articulos.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
       { path: 'articulosfamilias', component: ArticulosFamiliasComponent },
+      { path: 'articulos', component: ArticulosComponent },
     ]),
   ],
   declarations: [
@@ -26,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     InicioComponent,
     ArticulosFamiliasComponent,
     MenuComponent,
+    ArticulosComponent,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
