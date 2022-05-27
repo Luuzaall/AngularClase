@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+//Para llamadas al servidor.
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './components/app.component';
@@ -10,14 +11,18 @@ import { ArticulosFamiliasComponent } from './components/articulos-familias/arti
 import { MenuComponent } from './components/menu/menu.component';
 import { ArticulosComponent } from './components/articulos/articulos.component';
 
+// Router
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
+// Para Reactive Forms.
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
