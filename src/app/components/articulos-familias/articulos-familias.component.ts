@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticuloFamilia } from '../models/articulo-familia';
-import { MockArticulosFamiliasService } from '../services/mock-articulos-familias.service';
+import { ArticuloFamilia } from '../../models/articulo-familia';
+import { MockArticulosFamiliasService } from '../../services/mock-articulos-familias.service';
 
 @Component({
   selector: 'app-articulos-familias',
-  templateUrl: './articulo-familia.component.html',
-  styleUrls: ['./articulo-familia.component.css'],
+  templateUrl: './articulos-familias.component.html',
+  styleUrls: ['./articulos-familias.component.css'],
 })
 export class ArticulosFamiliasComponent implements OnInit {
   Titulo = 'Articulos Familias';

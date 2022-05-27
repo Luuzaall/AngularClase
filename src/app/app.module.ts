@@ -7,10 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './components/app.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { ArticulosFamiliasComponent } from './components/articulos-familias/articulos-familias.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
-import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   imports: [
@@ -33,4 +33,3 @@ import { MenuComponent } from './components/menu/menu.component';
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
 })
 export class AppModule {}
-
