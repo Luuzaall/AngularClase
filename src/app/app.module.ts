@@ -15,6 +15,9 @@ import { ArticulosComponent } from './components/articulos/articulos.component';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
+// ng bootstrap!
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
 // Para Reactive Forms.
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
@@ -23,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbPaginationModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
