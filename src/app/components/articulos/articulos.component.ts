@@ -35,6 +35,7 @@ export class ArticulosComponent implements OnInit {
   RegistrosTotal: number;
   Familias: ArticuloFamilia[] = null;
   Pagina = 1; // inicia pagina 1
+  submitted = false;
 
   // opciones del combo activo
   OpcionesActivo = [
@@ -50,18 +51,35 @@ export class ArticulosComponent implements OnInit {
 
   FormRegistro = new FormGroup({
     IdArticulo: new FormControl(0),
-    Nombre: new FormControl(''),
-    Precio: new FormControl(null),
-    Stock: new FormControl(null),
-    CodigoDeBarra: new FormControl(''),
-    IdArticuloFamilia: new FormControl(''),
-    FechaAlta: new FormControl(''),
+    Nombre: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(55),
+    ]),
+    Precio: new FormControl(null, [
+      Validators.required,
+      Validators.pattern('[0-9]{1,7}'),
+    ]),
+    Stock: new FormControl(null, [
+      Validators.required,
+      Validators.pattern('[0-9]{1,7}'),
+    ]),
+    CodigoDeBarra: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[0-9]{1,3}'),
+    ]),
+
+    IdArticuloFamilia: new FormControl('', [Validators.required]),
+    FechaAlta: new FormControl('', [
+      Validators.required,
+      Validators.pattern(
+        '(0[1-9]|[12][0-9]|3[01])[-/](0[1-9]|1[012])[-/](19|20)[0-9]{2}'
+      ),
+    ]),
     Activo: new FormControl(true),
   });
 
   constructor(
-    // private articulosService: MockArticulosService,
-    // private articulosFamiliasService: MockArticulosFamiliasService
     private articulosService: ArticulosService,
     private articulosFamiliasService: ArticulosFamiliasService
   ) {}
@@ -79,6 +97,8 @@ export class ArticulosComponent implements OnInit {
   Agregar() {
     this.AccionABMC = 'A';
     this.FormRegistro.reset({ Activo: true, IdArticulo: 0 });
+    this.submitted = false;
+    this.FormRegistro.markAsUntouched(); // funcionalidad ya incluida en el FormRegistro.Reset…
   }
 
   // Buscar segun los filtros, establecidos en FormRegistro
@@ -122,10 +142,18 @@ export class ArticulosComponent implements OnInit {
       return;
     }
     this.BuscarPorId(Item, 'M');
+    this.submitted = false;
+    this.FormRegistro.markAsUntouched(); // funcionalidad ya incluida en el FormRegistro.Reset…
   }
 
   // Graba tanto altas como modificaciones
   Grabar() {
+    // Intentó enviar el formulario
+    this.submitted = true;
+    // verificar que los validadores esten OK
+    if (this.FormRegistro.invalid) {
+      return;
+    }
     //hacemos una copia de los datos del formulario, para modificar la fecha y luego enviarlo al servidor
     const itemCopy = { ...this.FormRegistro.value };
 

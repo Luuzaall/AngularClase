@@ -64,7 +64,7 @@
     <tbody>
       <tr *ngFor="let item of Items">
         <td>{{ item.Nombre | uppercase }}</td>
-        <td class="text-right">{{ item.Precio | currency }}</td>
+        <td class="text-right">{{ item.Precio | currency: '$' }}</td>
         <td class="text-right">{{ item.Stock }}</td>
         <td>{{ item.FechaAlta | date: 'dd/MM/yyyy' }}</td>
         <td>{{ item.Activo ? 'SI' : 'NO' }}</td>
@@ -155,7 +155,35 @@
         Nombre <span class="text-danger">*</span>
       </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="Nombre" />
+        <input
+          type="text"
+          class="form-control-uppercase"
+          formControlName="Nombre"
+          [ngClass]="{
+            'is-invalid':
+              (FormRegistro.controls['Nombre'].touched || submitted) &&
+              FormRegistro.controls['Nombre'].errors
+          }"
+        />
+
+        <div
+          class="text-danger"
+          *ngIf="
+            (FormRegistro.controls['Nombre'].touched || submitted) &&
+            FormRegistro.controls['Nombre'].hasError('required')
+          "
+        >
+          Dato requerido.
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="
+            FormRegistro.controls['Nombre'].hasError('minlength') ||
+            FormRegistro.controls['Nombre'].hasError('maxlength')
+          "
+        >
+          Dato texto, 4 a 55 caracteres.
+        </div>
       </div>
     </div>
 
@@ -170,7 +198,27 @@
           name="Precio"
           class="form-control"
           formControlName="Precio"
+          [ngClass]="{
+            'is-invalid':
+              (FormRegistro.controls['Precio'].touched || submitted) &&
+              FormRegistro.controls['Precio'].errors
+          }"
         />
+        <div
+          class="text-danger"
+          *ngIf="
+            (FormRegistro.controls['Precio'].touched || submitted) &&
+            FormRegistro.controls['Precio'].hasError('required')
+          "
+        >
+          Dato requerido.
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="FormRegistro.controls['Precio'].hasError('pattern')"
+        >
+          Dato numérico, 1 a 7 dígitos.
+        </div>
       </div>
     </div>
 
@@ -185,7 +233,28 @@
           name="Stock"
           class="form-control"
           formControlName="Stock"
+          [ngClass]="{
+            'is-invalid':
+              (FormRegistro.controls['Stock'].touched || submitted) &&
+              FormRegistro.controls['Stock'].errors
+          }"
         />
+
+        <div
+          class="text-danger"
+          *ngIf="
+            (FormRegistro.controls['Stock'].touched || submitted) &&
+            FormRegistro.controls['Stock'].hasError('required')
+          "
+        >
+          Dato requerido.
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="FormRegistro.controls['Stock'].hasError('pattern')"
+        >
+          Dato numérico, 1 a 7 dígitos.
+        </div>
       </div>
     </div>
 
@@ -195,12 +264,33 @@
         Codigo De Barra <span class="text-danger">*</span>
       </label>
       <div class="col-sm-6">
+        <!-- EVITAR UTILIZAR UPPERCASE ACÁ-->
         <input
           type="text"
           name="CodigoDeBarra"
-          class="form-control"
+          class="form-control-uppercase"
           formControlName="CodigoDeBarra"
+          [ngClass]="{
+            'is-invalid':
+              (FormRegistro.controls['Stock'].touched || submitted) &&
+              FormRegistro.controls['Stock'].errors
+          }"
         />
+        <div
+          class="text-danger"
+          *ngIf="
+            (FormRegistro.controls['CodigoDeBarra'].touched || submitted) &&
+            FormRegistro.controls['CodigoDeBarra'].hasError('required')
+          "
+        >
+          Dato requerido.
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="FormRegistro.controls['CodigoDeBarra'].hasError('pattern')"
+        >
+          Dato numérico, 1 a 3 dígitos.
+        </div>
       </div>
     </div>
 
@@ -217,6 +307,12 @@
           name="IdArticuloFamilia"
           class="form-control"
           formControlName="IdArticuloFamilia"
+          [ngClass]="{
+            'is-invalid':
+              (FormRegistro.controls['IdArticuloFamilia'].touched ||
+                submitted) &&
+              FormRegistro.controls['IdArticuloFamilia'].errors
+          }"
         >
           <option
             *ngFor="let opt of Familias"
@@ -225,6 +321,15 @@
             ‌{{ opt.Nombre }}
           </option>
         </select>
+        <div
+          class="text-danger"
+          *ngIf="
+            (FormRegistro.controls['IdArticuloFamilia'].touched || submitted) &&
+            FormRegistro.controls['IdArticuloFamilia'].hasError('required')
+          "
+        >
+          Dato requerido.
+        </div>
       </div>
     </div>
 
@@ -238,7 +343,27 @@
           class="form-control"
           name="FechaAlta"
           formControlName="FechaAlta"
+          [ngClass]="{
+            'is-invalid':
+              (FormRegistro.controls['FechaAlta'].touched || submitted) &&
+              FormRegistro.controls['FechaAlta'].errors
+          }"
         />
+        <div
+          class="text-danger"
+          *ngIf="
+            (FormRegistro.controls['FechaAlta'].touched || submitted) &&
+            FormRegistro.controls['FechaAlta'].hasError('required')
+          "
+        >
+          Dato requerido.
+        </div>
+        <div
+          class="text-danger"
+          *ngIf="FormRegistro.controls['FechaAlta'].hasError('pattern')"
+        >
+          Dato fecha, formato dd/mm/aaaa.
+        </div>
       </div>
     </div>
 
@@ -248,11 +373,29 @@
         >Activo</label
       >
       <div class="col-sm-6">
-        <select name="Activo" [attr.disabled]="true" class="form-control">
+        <select
+          name="Activo"
+          [attr.disabled]="true"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              (FormRegistro.controls['Activo'].touched || submitted) &&
+              FormRegistro.controls['Activo'].errors
+          }"
+        >
           <option *ngFor="let opt of OpcionesActivo" [ngValue]="opt.Id">
             ‌{{ opt.Nombre }}
           </option>
         </select>
+        <div
+          class="text-danger"
+          *ngIf="
+            (FormRegistro.controls['Activo'].touched || submitted) &&
+            FormRegistro.controls['Activo'].hasError('required')
+          "
+        >
+          Dato requerido.
+        </div>
       </div>
     </div>
   </fieldset>
@@ -275,7 +418,12 @@
   </div>
 
   <!--texto: Revisar los datos ingresados...-->
-  <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="false">
+  <!--texto: Revisar los datos ingresados...-->
+  <div
+    id="divMsjFormRegistro"
+    class="row alert alert-danger"
+    *ngIf="submitted && FormRegistro.invalid"
+  >
     <i class="fa fa-exclamation-sign"></i>{{ Mensajes['RD'] }}
   </div>
 </form>
