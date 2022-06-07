@@ -1,5 +1,57 @@
 #divBody {
-  min-height: 75rem;
-  padding-top: 4.5rem;
+  min-height: 84vh;
+  padding-top: 2rem;
 }
-/* Add application styles & imports to this file! */
+
+.subtitulo {
+  background-color: #afb4bd;
+  color: white;
+  border-radius: 5px 5px 0px 0px;
+  font-style: italic;
+  font-weight: 500;
+  padding: 0.3em 0 0.3em 1em;
+  margin: 0.8em 0em 0.5em 0em;
+  /* font-weight: bold; */
+  background-image: linear-gradient(
+    to right,
+    rgba(175, 18, 189, 1),
+    rgba(175, 180, 220, 0.5)
+  );
+}
+
+.subtitulo {
+  background-color: #afb4bd;
+  color: white;
+  border-radius: 5px 5px 0px 0px;
+  font-style: italic;
+  font-weight: 500;
+  padding: 0.3em 0 0.3em 1em;
+  margin: 0.8em 0em 0.5em 0em;
+  /* font-weight: bold; */
+  background-image: linear-gradient(
+    to right,
+    rgba(175, 18, 189, 1),
+    rgba(175, 180, 220, 0.5)
+  );
+}
+
+/* redes al pie de pagina */
+.redes {
+  background-color: blue;
+  color: white;
+  padding: 0.4em;
+  margin: 0.3em;
+  border-radius: 1em;
+}
+
+footer {
+  padding: 1rem;
+  background-color: #f1f3f7be;
+  border-radius: 20px;
+}
+
+form {
+  background-color: #f1f3f7be;
+  border-radius: 20px;
+  padding: 20px;
+}

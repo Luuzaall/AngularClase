@@ -1,5 +1,8 @@
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-  <nav class="navbar navbar-light bg-ligth text-white">PYMES</nav>
+<nav class="navbar navbar-dark bg-dark navbar-expand-md">
+  <a class="navbar-brand" routerLink="/inicio">
+    <i class="fa fa-industry"></i>
+    &nbsp;<i>Pymes</i>
+  </a>
   <button
     class="navbar-toggler"
     type="button"
@@ -8,10 +11,15 @@
     aria-controls="navbarSupportedContent"
     aria-expanded="false"
     aria-label="Toggle navigation"
+    (click)="toggleNavbar()"
   >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent divBody">
+  <div
+    class="collapse navbar-collapse"
+    id="navbarSupportedContent divBody"
+    [ngClass]="{ show: navbarOpen }"
+  >
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/inicio"
@@ -26,15 +34,15 @@
       <li class="nav-item">
         <a
           class="nav-link"
-          routerLink="/ArticulosFamilias"
+          routerLink="/articulosfamilias"
           title="Listado Articulos Familia"
           >ArticulosFamilias</a
         >
       </li>
       <li class="nav-item dropdown">
         <a
-          class="nav-link dropdown-toggle"
-          href=""
+          class="nav-link"
+          routerLink="/inicio"
           id="navbarDropdown"
           role="button"
           data-toggle="dropdown"
@@ -43,20 +51,9 @@
         >
           Informes
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Informe de Ventas</a>
-          <a class="dropdown-item" href="#">Informe de Compras</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#"
-            >Informe de Devoluciones de Clientes</a
-          >
-          <a class="dropdown-item" href="#"
-            >Informe de Devoluciones de Proveedores</a
-          >
-        </div>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" href="#">Acerca de</a>
+        <a class="nav-link" routerLink="/inicio">Acerca de</a>
       </li>
     </ul>
 
